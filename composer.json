@@ -1,0 +1,22 @@
+{
+    "name": "atomforthings/atom-lib-php",
+    "description": "PHP library for Atom for Things Protocol",
+    "keywords": ["atom", "atomforthings", "atom for things", "iot", "internet of things", "protocol"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "neerajsohal",
+            "email": "hello@neerajkumar.name"
+        }
+    ],
+    "require": {
+    	"php": ">=5.5"
+    },
+    "autoload": {
+        "psr-4": { "Atom\\": "src/Atom" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5"
+    },
+    "minimum-stability": "stable"
+}
