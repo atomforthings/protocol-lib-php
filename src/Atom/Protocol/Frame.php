@@ -6,7 +6,6 @@
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
  * @license    http://opensource.org/licenses/MIT  MIT License
- * @version    GIT: $Id$
  * @link       http://pear.php.net/package/PackageName
  * @since      File available since Release 0.0.1
  */
@@ -26,25 +25,24 @@ class Frame {
 	private $variableHeader;
 	private $body;
 
-	public function ___construct(CommandInterface $command = null, FlagCollectionInterface $flags = null, $body = null) {
+	public function __construct(CommandInterface $command, FlagCollectionInterface $flags, $body = '') {
 		$this->command = $command;
         $this->flags = $flags;
         $this->body = $body;
+
+        return $this;
 	}
 
-    public function withData($data) {
-        return $this->text2bin($data);
+    public function setBody($body = null) {
+        if(is_null($body)) {
+            return false;
+        }
+
+        $this->body = $body;
+        return $this;
     }
 
-    public function setFlags(FlagCollectionInterface $flags) {
-        
-    }
-    
-    public function setBody($body) {
-        $this->body = $body;
-    }
-	
-    private function isValid() {
+    public function isValid() {
     	return true;
     }
 
@@ -65,7 +63,6 @@ class Frame {
     				$result .= sprintf("%'08b", 254);
     			}
     		}
-    	
     	return $result;
     }
 
@@ -76,21 +73,4 @@ class Frame {
 	public function __toString() {
 		return sprintf($this->prepFrame());
 	}
-
-    private function bin2text($bin_str) { 
-        $text_str = ''; 
-        $chars = explode("\n", chunk_split(str_replace("\n", '', $bin_str), 8)); 
-        $_i = count($chars); 
-        for($i = 0; $i < $_i; $text_str .= chr(bindec($chars[$i])), $i++  ); 
-        return $text_str;
-    }
- 
-    private function text2bin($str) {
-        $out=false; 
-        for($a=0; $a < strlen($str); $a++) {
-            $out .= sprintf('%08d', base_convert(ord(substr($str,$a,1)), 10, 2));
-        }
-        return $out;
-    }
-		
 }
