@@ -2,4 +2,9 @@
 PHP Library for Atom For Things Protocol
 
 
-[![Packagist](https://img.shields.io/packagist/dt/atomforthings/protocol-lib-php.svg)]() [![Coverage Status](https://coveralls.io/repos/atomforthings/protocol-lib-php/badge.svg)](https://coveralls.io/r/atomforthings/protocol-lib-php) [![Travis](https://img.shields.io/travis/atomforthings/protocol-lib-php.svg)]() [![Scrutinizer](https://img.shields.io/scrutinizer/g/atomforthings/protocol-lib-php.svg)]() [![Latest Stable Version](https://poser.pugx.org/atomforthings/protocol-lib-php/v/stable.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php) [![Total Downloads](https://poser.pugx.org/atomforthings/protocol-lib-php/downloads.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php) [![Latest Unstable Version](https://poser.pugx.org/atomforthings/protocol-lib-php/v/unstable.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php) [![License](https://poser.pugx.org/atomforthings/protocol-lib-php/license.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php)
+[![Build Status](https://travis-ci.org/atomforthings/protocol-lib-php.svg?branch=master)](https://travis-ci.org/atomforthings/protocol-lib-php)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/atomforthings/protocol-lib-php/badges/quality-score.png)](https://scrutinizer-ci.com/g/atomforthings/protocol-lib-php/)
+[![Latest Stable Version](https://poser.pugx.org/atomforthings/protocol-lib-php/v/stable.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php)
+[![Total Downloads](https://poser.pugx.org/atomforthings/protocol-lib-php/downloads.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php)
+[![Latest Unstable Version](https://poser.pugx.org/atomforthings/protocol-lib-php/v/unstable.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php)
+[![License](https://poser.pugx.org/atomforthings/protocol-lib-php/license.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php)
