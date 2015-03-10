@@ -5,6 +5,5 @@ php:
   - 5.6
 before_script:
   - composer install
-  - cd tests
 script:
-  - phpunit --stderr tests
+  - phpunit --stderr --bootstrap tests/bootstrap.php tests
