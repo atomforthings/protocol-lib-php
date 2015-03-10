@@ -7,6 +7,10 @@ namespace Atom\Protocol\Command;
  *
  * This interface implements the 4 bit command used in Atom's Frame
  *
+ * @author     Neeraj Kumar <hello@neerajkumar.name>
+ * @copyright  2015 Neeraj Kumar
+ * @license    http://opensource.org/licenses/MIT  MIT License
+ * 
  */
 interface CommandInterface {
 
@@ -14,22 +18,26 @@ interface CommandInterface {
 	 * returns binary string representation of implemented command
 	 * @return string
 	 */
-	function __toString();
+	public function __toString();
+
 	/**
 	 * returns decimal representation of implemented command
 	 * @return number
 	 */
-	function toDecimal();
+	public function toDecimal();
+
 	/**
 	 * returns hexadecimal code representation of implemented command
 	 * @return hex
 	 */
-	function toHex();
+	public function toHex();
+
 	/**
 	 * returns binary string representation of implemented command
 	 * @return string
 	 */
-	function toBinary();
-	function setFlags(\Atom\Protocol\Flag\FlagCollectionInterface $flags);
+	public function toBinary();
+
+	public function setFlags(\Atom\Protocol\Flag\FlagCollectionInterface $flags);
 
 }

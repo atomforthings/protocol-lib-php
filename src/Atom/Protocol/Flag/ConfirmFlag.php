@@ -2,7 +2,7 @@
 
 namespace Atom\Protocol\Flag;
 
-class Confirm implements FlagInterface {
+class ConfirmFlag implements FlagInterface {
 
 	const VALUE = 0b0001;
 
