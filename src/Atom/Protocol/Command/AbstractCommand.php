@@ -28,15 +28,15 @@ abstract class AbstractCommand implements CommandInterface {
 	
 	/**
 	 * returns decimal representation of implemented command
-	 * @return number
+	 * @return number string
 	 */
 	public function toDecimal() {
 		return sprintf("%02u", $this::VALUE);
 	}
 
 	/**
-	 * returns hexadecimal code representation of implemented command
-	 * @return hex
+	 * returns hexadecimal string representation of implemented command
+	 * @return hex string
 	 */
 	public function toHex() {
 		return sprintf("%02X", $this::VALUE);
@@ -44,7 +44,7 @@ abstract class AbstractCommand implements CommandInterface {
 
 	/**
 	 * returns binary string representation of implemented command
-	 * @return string
+	 * @return string string
 	 */
 	public function toBinary() {
 		return sprintf("%'04b", $this::VALUE);

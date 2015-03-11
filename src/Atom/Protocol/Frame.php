@@ -47,7 +47,7 @@ class Frame {
     }
 
     private function getFixedHeader() {
-    	return $this->command . '0000';
+    	return $this->command . $this->flags;
     }
 
     private function getVariableHeader() {
@@ -67,7 +67,7 @@ class Frame {
     }
 
     private function prepFrame() {
-    	return bindec($this->getFixedHeader().$this->getVariableHeader()).$this->body;
+    	return bindec($this->getFixedHeader()).bindec($this->getVariableHeader()).$this->body;
     }
 
 	public function __toString() {
