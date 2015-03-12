@@ -12,7 +12,7 @@ namespace Atom\Protocol\Command;
  * @license    http://opensource.org/licenses/MIT  MIT License
  * 
  */
-class ConnectCommand extends AbstractCommand  {
+class PublishCommand extends AbstractCommand  {
 
 	/**
 	 * @property constant VALUE binary value of Post Command

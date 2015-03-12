@@ -20,8 +20,6 @@ class Frame {
 
 	private $command;
     private $flags;
-	private $fixedHeader;
-	private $variableHeader;
 	private $body;
 
     /**
@@ -35,14 +33,13 @@ class Frame {
 		$this->command = $command;
         $this->flags = $flags;
         $this->body = $body;
-
-        return $this;
 	}
 
     /**
      * Sets the body part of the command
      * 
-     * @param [type] $body [description]
+     * @param mixed $body sets the body part of command
+     * @todo  throw an exception in case of incompatibility
      */
     public function setBody($body = null) {
         if(is_null($body)) {
@@ -57,7 +54,7 @@ class Frame {
      * return wether the Frame is valid or not
      * 
      * @return boolean
-     * @todo implement check and throw an error
+     * @todo implement check and throw an exception
      */
     public function isValid() {
     	return true;

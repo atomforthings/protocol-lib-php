@@ -10,7 +10,7 @@ class FlagCollection implements FlagCollectionInterface {
 
 	private $value = 0b0000;
 
-	function __construct(Flag\FlagInterface $flag) {
+	public function __construct(Flag\FlagInterface $flag) {
 		array_push($this->flags, $flag);
 	}
 

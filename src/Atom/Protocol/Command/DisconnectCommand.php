@@ -18,7 +18,7 @@ class DisconnectCommand extends AbstractCommand  {
 	 */
 	const VALUE = 0b0001;
 
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 	}
 
