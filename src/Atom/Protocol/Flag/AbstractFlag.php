@@ -12,7 +12,7 @@ namespace Atom\Protocol\Flag;
  * @license    http://opensource.org/licenses/MIT  MIT License
  * 
  */
-abstract class FlagCommand implements FlagInterface {
+abstract class AbstractFlag implements FlagInterface {
 
 	const VALUE = null;
 
