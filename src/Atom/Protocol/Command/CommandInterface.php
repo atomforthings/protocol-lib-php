@@ -38,6 +38,4 @@ interface CommandInterface {
 	 */
 	public function toBinary();
 
-	public function setFlags(\Atom\Protocol\Flag\FlagCollectionInterface $flags);
-
 }

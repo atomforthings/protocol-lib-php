@@ -1,22 +1,23 @@
 <?php
 
 namespace Atom\Protocol\Command;
+
 /**
- * Atom Disconnect Command
+ * Atom Post Command
  *
- * Implementation of Disconnect Command
+ * Implementation of Post Command
  *
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
  * @license    http://opensource.org/licenses/MIT  MIT License
  * 
  */
-class DisconnectCommand extends AbstractCommand  {
+class PostCommand extends AbstractCommand  {
 
 	/**
-	 * @property constant VALUE binary value of Disconnect Command
+	 * @property constant VALUE binary value of Post Command
 	 */
-	const VALUE = 0b0001;
+	const VALUE = 0b0101;
 
 	public function __construct() {
 		parent::__construct();

@@ -1,25 +1,25 @@
 <?php
 
-namespace Atom\Protocol\Command;
+namespace Atom\Protocol\Flag;
 
 /**
- * Atom Command Abstract Class
+ * Atom Flag Abstract Class
  *
- * This abstract class implements the 4 bit command used in Atom's Frame
+ * This abstract class implements the 4 bit flag used in Atom's Frame
  *
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
  * @license    http://opensource.org/licenses/MIT  MIT License
  * 
  */
-abstract class AbstractCommand implements CommandInterface {
+abstract class AbstractFlag implements FlagInterface {
 
 	const VALUE = null;
 
 	public function __construct() {}
 
 	/**
-	 * returns binary string representation of implemented command
+	 * returns binary string representation of implemented flag
 	 * @return string
 	 */
 	public function __toString() {
@@ -27,7 +27,7 @@ abstract class AbstractCommand implements CommandInterface {
 	}
 	
 	/**
-	 * returns decimal representation of implemented command
+	 * returns decimal representation of implemented flag
 	 * @return number
 	 */
 	public function toDecimal() {
@@ -35,7 +35,7 @@ abstract class AbstractCommand implements CommandInterface {
 	}
 
 	/**
-	 * returns hexadecimal string representation of implemented command
+	 * returns hexadecimal string representation of implemented flag
 	 * @return hex
 	 */
 	public function toHex() {
@@ -43,7 +43,7 @@ abstract class AbstractCommand implements CommandInterface {
 	}
 
 	/**
-	 * returns binary string representation of implemented command
+	 * returns binary string representation of implemented flag
 	 * @return binary
 	 */
 	public function toBinary() {
