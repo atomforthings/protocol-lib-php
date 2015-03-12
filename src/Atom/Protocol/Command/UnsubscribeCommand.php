@@ -3,19 +3,19 @@
 namespace Atom\Protocol\Command;
 
 /**
- * Atom Connect Command
+ * Atom Unsubscribe Command
  *
- * Implementation of Connect Command
+ * Implementation of Unsubscribe Command
  *
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
  * @license    http://opensource.org/licenses/MIT  MIT License
  * 
  */
-class UnSubscribeCommand extends AbstractCommand  {
+class UnsubscribeCommand extends AbstractCommand  {
 
 	/**
-	 * @property constant VALUE binary value of Connect Command
+	 * @property constant VALUE binary value of Unsubscribe Command
 	 */
 	const VALUE = 0b0100;
 

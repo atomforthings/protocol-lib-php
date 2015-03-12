@@ -3,9 +3,9 @@
 namespace Atom\Protocol\Command;
 
 /**
- * Atom Connect Command
+ * Atom Get Command
  *
- * Implementation of Connect Command
+ * Implementation of Get Command
  *
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
@@ -15,7 +15,7 @@ namespace Atom\Protocol\Command;
 class GetCommand extends AbstractCommand  {
 
 	/**
-	 * @property constant VALUE binary value of Connect Command
+	 * @property constant VALUE binary value of Get Command
 	 */
 	const VALUE = 0b0110;
 

@@ -3,9 +3,9 @@
 namespace Atom\Protocol\Command;
 
 /**
- * Atom Connect Command
+ * Atom Subscribe Command
  *
- * Implementation of Connect Command
+ * Implementation of Subscribe Command
  *
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
@@ -15,7 +15,7 @@ namespace Atom\Protocol\Command;
 class SubscribeCommand extends AbstractCommand  {
 
 	/**
-	 * @property constant VALUE binary value of Connect Command
+	 * @property constant VALUE binary value of Subscribe Command
 	 */
 	const VALUE = 0b0011;
 

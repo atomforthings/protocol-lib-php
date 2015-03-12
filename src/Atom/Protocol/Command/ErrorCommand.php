@@ -3,21 +3,21 @@
 namespace Atom\Protocol\Command;
 
 /**
- * Atom Post Command
+ * Atom Error Command
  *
- * Implementation of Post Command
+ * Implementation of Error Command
  *
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
  * @license    http://opensource.org/licenses/MIT  MIT License
  * 
  */
-class ConnectCommand extends AbstractCommand  {
+class ErrorCommand extends AbstractCommand  {
 
 	/**
-	 * @property constant VALUE binary value of Post Command
+	 * @property constant VALUE binary value of Error Command
 	 */
-	const VALUE = 0b0010;
+	const VALUE = 0b1001;
 
 	public function __construct() {
 		parent::__construct();

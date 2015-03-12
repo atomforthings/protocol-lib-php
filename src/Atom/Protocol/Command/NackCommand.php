@@ -3,9 +3,9 @@
 namespace Atom\Protocol\Command;
 
 /**
- * Atom Connect Command
+ * Atom Nack Command
  *
- * Implementation of Connect Command
+ * Implementation of Nack Command
  *
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
@@ -15,7 +15,7 @@ namespace Atom\Protocol\Command;
 class NackCommand extends AbstractCommand  {
 
 	/**
-	 * @property constant VALUE binary value of Connect Command
+	 * @property constant VALUE binary value of Nack Command
 	 */
 	const VALUE = 0b1000;
 

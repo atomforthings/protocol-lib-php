@@ -28,7 +28,7 @@ abstract class AbstractCommand implements CommandInterface {
 	
 	/**
 	 * returns decimal representation of implemented command
-	 * @return number string
+	 * @return string
 	 */
 	public function toDecimal() {
 		return sprintf("%02u", $this::VALUE);
@@ -36,7 +36,7 @@ abstract class AbstractCommand implements CommandInterface {
 
 	/**
 	 * returns hexadecimal string representation of implemented command
-	 * @return hex string
+	 * @return string
 	 */
 	public function toHex() {
 		return sprintf("%02X", $this::VALUE);
@@ -44,14 +44,10 @@ abstract class AbstractCommand implements CommandInterface {
 
 	/**
 	 * returns binary string representation of implemented command
-	 * @return string string
+	 * @return binary
 	 */
 	public function toBinary() {
 		return sprintf("%'04b", $this::VALUE);
-	}
-
-	public function setFlags(\Atom\Protocol\Flag\FlagCollectionInterface $flags) {
-
 	}
 
 }
