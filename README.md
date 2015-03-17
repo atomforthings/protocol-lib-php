@@ -8,3 +8,7 @@ PHP Library for Atom For Things Protocol
 [![Total Downloads](https://poser.pugx.org/atomforthings/protocol-lib-php/downloads.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php)
 [![Latest Unstable Version](https://poser.pugx.org/atomforthings/protocol-lib-php/v/unstable.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php)
 [![License](https://poser.pugx.org/atomforthings/protocol-lib-php/license.svg)](https://packagist.org/packages/atomforthings/protocol-lib-php)
+
+Atom for Things is a protocol for 'things' in Internet of Things. Atom is a distributed, peer-to-peer protocol based on well-proven​ pub/sub pattern.
+
+[!Documentation](http://atomforthings.readme.io)
