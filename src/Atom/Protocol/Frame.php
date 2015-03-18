@@ -18,9 +18,25 @@ use Atom\Protocol\Exception\FrameException as FrameException;
  */
 class Frame {
 
-	private $command;
-    private $flags;
-	private $body;
+    const END_OF_FRAME = "\x00";
+    
+    /**
+     * The Command for the frame
+     * @var CommandInterface
+     */
+	protected $command = null;
+    
+    /**
+     * The flags for the frame
+     * @var FlagCollectionInterface
+     */
+    protected $flags = null;
+    
+    /**
+     * Th body for the frame
+     * @var string
+     */
+	protected $body = null;
 
     /**
      * Atom Frame Constructor
@@ -29,16 +45,83 @@ class Frame {
      * @param FlagCollectionInterface $flags   Relevant Flags Collections from command
      * @param string                  $body    Body for the command to be sent
      */
-	public function __construct(CommandInterface $command, FlagCollectionInterface $flags, $body = '') {
-		$this->command = $command;
-        $this->flags = $flags;
-        $this->body = $body;
+	public function __construct() {
+        // CommandInterface $command, FlagCollectionInterface $flags, $body = '') {
+		// $this->command = $command;
+  //       $this->flags = $flags;
+  //       $this->body = $body;
+        
+        // $this->setCommand(null);
+        // $this->setFlags(null);
+        // $this->setBody(null);
 	}
+    
+    /**
+     * Return the command for this frame
+     *
+     * Return false if the command does not exist
+     *
+     * @return false|\Atom\Protocol\Command
+     */
+    public function getCommand() {
+        return $this->command === null
+            ? false
+            : $this->command;
+    }
 
     /**
-     * Sets the body part of the command
+     * Set the command for this frame
      * 
-     * @param mixed $body sets the body part of command
+     * @param CommandInterface $command Command to be sent
+     * @return \Atom\Protocol\Frame
+     */
+    public function setCommand(CommandInterface $command) {
+
+        $this->command = $command;
+        return $this;
+    }
+
+    /**
+     * Return the flags for this frame
+     *
+     * Returns flags for this frame
+     *
+     * @return \Atom\Protocol\FlagCollection
+     */
+    public function getFlags() {
+        return $this->flags;
+    }
+
+    /**
+     * Set the flags for this frame
+     * 
+     * @param FlagCollectionInterface $flags Flags to be set
+     * @return \Atom\Protocol\Frame
+     */
+    public function setFlags(FlagCollectionInterface $flags) {
+
+        $this->flags = $flags;
+        return $this;
+    }
+
+    /**
+     * Retun the body part of this frame
+     * 
+     * @return false|string
+     */
+    public function getBody() {
+
+        if(is_null($body)) {
+            return false;
+        }
+
+        return $this->body = $body;
+    }
+
+    /**
+     * Sets the body part of this frame
+     * 
+     * @param mixed $body sets the body part for this frame
      * @todo  throw an exception in case of incompatibility
      */
     public function setBody($body = null) {
@@ -62,6 +145,7 @@ class Frame {
 
     /**
      * return the fixed header part of the frame
+     * 
      * @return binary returns binary string representation
      */
     private function getFixedHeader() {
@@ -70,7 +154,9 @@ class Frame {
 
     /**
      * returns the variable header part of the Atom frame
+     * 
      * @return binary returns binary string representation
+     * @deprecated this function is deprecated and will be removed soon
      */
     private function getVariableHeader() {
     	$len = strlen($this->body);
@@ -90,14 +176,16 @@ class Frame {
 
     /**
      * prepares the frame
+     * 
      * @return dec returns decimal as string representation 
      */
     private function prepFrame() {
-    	return bindec($this->getFixedHeader()).bindec($this->getVariableHeader()).$this->body;
+    	return bindec($this->getFixedHeader()).$this->body . chr(0);
     }
 
     /**
      * returns string representation of the frame
+     * 
      * @return string
      */
 	public function __toString() {
