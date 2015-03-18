@@ -104,11 +104,11 @@ class Frame {
      */
     public function getBody() {
 
-        if(is_null($body)) {
+        if(is_null($this->body)) {
             return false;
         }
 
-        return $this->body = $body;
+        return $this->body;
     }
 
     /**
@@ -118,6 +118,7 @@ class Frame {
      * @todo  throw an exception in case of incompatibility
      */
     public function setBody($body = null) {
+        
         if(is_null($body)) {
             return false;
         }
