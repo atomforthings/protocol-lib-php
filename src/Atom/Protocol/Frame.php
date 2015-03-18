@@ -18,8 +18,6 @@ use Atom\Protocol\Exception\FrameException as FrameException;
  */
 class Frame {
 
-    const END_OF_FRAME = "\x00";
-    
     /**
      * The Command for the frame
      * @var CommandInterface
@@ -46,14 +44,7 @@ class Frame {
      * @param string                  $body    Body for the command to be sent
      */
 	public function __construct() {
-        // CommandInterface $command, FlagCollectionInterface $flags, $body = '') {
-		// $this->command = $command;
-  //       $this->flags = $flags;
-  //       $this->body = $body;
         
-        // $this->setCommand(null);
-        // $this->setFlags(null);
-        // $this->setBody(null);
 	}
     
     /**
@@ -89,6 +80,7 @@ class Frame {
      * @return \Atom\Protocol\FlagCollection
      */
     public function getFlags() {
+
         return $this->flags;
     }
 
@@ -97,9 +89,13 @@ class Frame {
      * 
      * @param FlagCollectionInterface $flags Flags to be set
      * @return \Atom\Protocol\Frame
+     * @throws \Exception If Command is not set for this frame
      */
     public function setFlags(FlagCollectionInterface $flags) {
 
+        if($this->command === null) {
+            throw \Exception('Command is not set');
+        }
         $this->flags = $flags;
         return $this;
     }
@@ -155,20 +151,19 @@ class Frame {
     /**
      * returns the variable header part of the Atom frame
      * 
-     * @return binary returns binary string representation
-     * @deprecated this function is deprecated and will be removed soon
+     * @return string return hexadecimal representation of the body length
      */
     private function getVariableHeader() {
     	$len = strlen($this->body);
-    	$result = null;
+    	$result = '';
     		while($len > 0) {
     			$len = $len - 254;
     			if($len <= 0) {
     				$len = $len + 254;
-    				$result .= sprintf("%'08b", $len);
+    				$result .= sprintf("%'02X", $len);
     				$len = 0;
     			} else {
-    				$result .= sprintf("%'08b", 254);
+    				$result .= sprintf("%'02X", 254);
     			}
     		}
     	return $result;
@@ -177,10 +172,10 @@ class Frame {
     /**
      * prepares the frame
      * 
-     * @return dec returns decimal as string representation 
+     * @return string returns decimal as string representation 
      */
     private function prepFrame() {
-    	return bindec($this->getFixedHeader()).$this->body . chr(0);
+    	return bindec($this->getFixedHeader()).($this->getVariableHeader()).$this->body;
     }
 
     /**
