@@ -13,7 +13,7 @@ use Atom\Protocol\Exception\FrameException as FrameException;
  * @author     Neeraj Kumar <hello@neerajkumar.name>
  * @copyright  2015 Neeraj Kumar
  * @license    http://opensource.org/licenses/MIT  MIT License
- * @link       http://pear.php.net/package/PackageName
+ * @link       http://github.com/atomforthings/protocol-lib-php
  * @since      File available since Release 0.0.1
  */
 class Frame {
@@ -39,12 +39,9 @@ class Frame {
     /**
      * Atom Frame Constructor
      * 
-     * @param CommandInterface        $command Command to be sent
-     * @param FlagCollectionInterface $flags   Relevant Flags Collections from command
-     * @param string                  $body    Body for the command to be sent
      */
 	public function __construct() {
-        
+        ;
 	}
     
     /**
