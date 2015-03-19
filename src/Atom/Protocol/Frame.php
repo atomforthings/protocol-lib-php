@@ -155,13 +155,13 @@ class Frame {
 		$len = strlen($this->body);
 		$result = '';
 			while ($len > 0) {
-				$len = $len - 254;
+				$len = $len - 1294;
 				if ($len <= 0) {
-					$len = $len + 254;
-					$result .= sprintf("%'02X", $len);
+					$len = $len + 1294;
+                    $result .= strtoupper(sprintf("%'02s", base_convert($len, 10, 36)));           
 					$len = 0;
 				} else {
-					$result .= sprintf("%'02X", 254);
+                    $result .= strtoupper(sprintf("%'02s", base_convert(1295, 10, 36)));
 				}
 			}
 		return $result;
