@@ -90,7 +90,7 @@ class Frame {
 	 */
 	public function setFlags(FlagCollectionInterface $flags) {
 
-		if($this->command === null) {
+		if ($this->command === null) {
 			throw \Exception('Command is not set');
 		}
 		$this->flags = $flags;
@@ -104,7 +104,7 @@ class Frame {
 	 */
 	public function getBody() {
 
-		if(is_null($this->body)) {
+		if (is_null($this->body)) {
 			return false;
 		}
 
@@ -119,7 +119,7 @@ class Frame {
 	 */
 	public function setBody($body = null) {
         
-		if(is_null($body)) {
+		if (is_null($body)) {
 			return false;
 		}
 
@@ -143,7 +143,7 @@ class Frame {
 	 * @return binary returns binary string representation
 	 */
 	private function getFixedHeader() {
-		return $this->command . $this->flags;
+		return $this->command.$this->flags;
 	}
 
 	/**
@@ -154,9 +154,9 @@ class Frame {
 	private function getVariableHeader() {
 		$len = strlen($this->body);
 		$result = '';
-			while($len > 0) {
+			while ($len > 0) {
 				$len = $len - 254;
-				if($len <= 0) {
+				if ($len <= 0) {
 					$len = $len + 254;
 					$result .= sprintf("%'02X", $len);
 					$len = 0;
