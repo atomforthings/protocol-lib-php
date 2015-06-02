@@ -7,3 +7,6 @@ vendor/
 
 .DS_Store
 tmp/
+sami.phar
+build/
+cache/

@@ -118,14 +118,13 @@ class Frame {
 	 * @todo  throw an exception in case of incompatibility
 	 */
 	public function setBody($body = null) {
-        
-		if (is_null($body)) {
-			return false;
-		}
 
 		if ($this->command === null) {
-			throw Atom\Protocol\Exception('Command is not set');
+			throw \Atom\Protocol\Exception\FrameException('Command is not set');
 		}
+
+		if(!constant(get_class($this->command) . "::IS_BODY_REQUIRED") && is_null($body)) 
+			throw new \Atom\Protocol\Exception\FrameException("Body is Required for " . get_class($this->command));
 
 		$this->body = $body;
 		return $this;
@@ -138,6 +137,9 @@ class Frame {
 	 * @todo implement check and throw an exception
 	 */
 	public function isValid() {
+
+		if(!constant(get_class($this->command) . "::IS_BODY_REQUIRED") && is_null($this->body)) 
+			throw new \Atom\Protocol\Exception\FrameException("Body is Required for " . get_class($this->command));
 		return true;
 	}
 
@@ -186,6 +188,12 @@ class Frame {
 	 * @return string
 	 */
 	public function __toString() {
+		try {
+			$this->isValid();
+		} catch (\Exception $e) {
+			trigger_error($e, E_USER_ERROR);
+			return false;
+		}
 		return sprintf($this->prepFrame());
 	}
 }
