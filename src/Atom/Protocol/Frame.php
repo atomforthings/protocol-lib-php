@@ -91,7 +91,7 @@ class Frame {
 	public function setFlags(FlagCollectionInterface $flags) {
 
 		if ($this->command === null) {
-			throw \Exception('Command is not set');
+			throw new \Atom\Protocol\Exception\FrameException('Command is not set');
 		}
 		$this->flags = $flags;
 		return $this;
@@ -121,6 +121,10 @@ class Frame {
         
 		if (is_null($body)) {
 			return false;
+		}
+
+		if ($this->command === null) {
+			throw Atom\Protocol\Exception('Command is not set');
 		}
 
 		$this->body = $body;

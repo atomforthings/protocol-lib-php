@@ -15,6 +15,11 @@ namespace Atom\Protocol\Command;
 abstract class AbstractCommand implements CommandInterface {
 
 	const VALUE = null;
+	const IS_BODY_REQUIRED = null;
+	const IS_BODY_ALLOWED = null;
+
+	private $validFlags = [];
+	private $requiredFlags = [];
 
 	public function __construct() {}
 
