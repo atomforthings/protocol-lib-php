@@ -11,7 +11,8 @@
         }
     ],
     "require": {
-    	"php": ">=5.5"
+    	"php": ">=5.5",
+        "atomforthings/support-php": "^0.0.1"
     },
     "autoload": {
         "psr-4": { "Atom\\": "src/Atom" }

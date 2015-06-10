@@ -12,7 +12,7 @@ namespace Atom\Protocol\Flag;
  * @license    http://opensource.org/licenses/MIT  MIT License
  * 
  */
-interface FlagInterface {
+interface FlagInterface  {
 
 	/**
 	 * returns binary string representation of implemented flag

@@ -3,9 +3,10 @@
 namespace Atom\Protocol;
 
 use Atom\Protocol\Command as Command;
-use Atom\Protocol\Command\CommandInterface as CommandInterface;
-use Atom\Protocol\Flag\FlagCollectionInterface as FlagCollectionInterface;
-use Atom\Protocol\Exception\FrameException as FrameException;
+use Atom\Protocol\Command\CommandInterface;
+use Atom\Support\AbstractCollection;
+use Atom\Protocol\Flag\FlagInterface;
+use Atom\Protocol\Exception\FrameException;
 
 /**
  * Frame Class for Atom for Things Protocol
@@ -26,7 +27,7 @@ class Frame {
     
 	/**
 	 * The flags for the frame
-	 * @var FlagCollectionInterface
+	 * @var CollectionInterface
 	 */
 	protected $flags = null;
     
@@ -41,7 +42,7 @@ class Frame {
 	 * 
 	 */
 	public function __construct() {
-		;
+		$this->flags = new AbstractCollection;
 	}
     
 	/**
@@ -67,6 +68,7 @@ class Frame {
 
 		$this->command = $command;
 		return $this;
+		
 	}
 
 	/**
@@ -79,6 +81,29 @@ class Frame {
 	public function getFlags() {
 
 		return $this->flags;
+
+	}
+
+	/**
+	 * Set a flag for this frame
+	 * 
+	 * @param FlagInterface $flag Flag to be set
+	 * @return \Atom\Protocol\Frame
+	 * @throws \Exception If Command is not set for this frame
+	 */
+	public function setFlag(FlagInterface $flag) {
+
+		if ($this->command === null) {
+			throw new \Atom\Protocol\Exception\FrameException('Command is not set');
+		}
+
+		if(! in_array(get_class($flag), $this->command->validFlags)) {
+			throw new \Atom\Protocol\Exception\FrameException('Not a Valid Flag');
+		}
+
+		$this->flags[] = $flag;
+		return $this;
+
 	}
 
 	/**
@@ -88,7 +113,7 @@ class Frame {
 	 * @return \Atom\Protocol\Frame
 	 * @throws \Exception If Command is not set for this frame
 	 */
-	public function setFlags(FlagCollectionInterface $flags) {
+	public function setFlags(CollectionInterface $flags) {
 
 		if ($this->command === null) {
 			throw new \Atom\Protocol\Exception\FrameException('Command is not set');
@@ -126,8 +151,14 @@ class Frame {
 		if(!constant(get_class($this->command) . "::IS_BODY_REQUIRED") && is_null($body)) 
 			throw new \Atom\Protocol\Exception\FrameException("Body is Required for " . get_class($this->command));
 
+
+		if(!constant(get_class($this->command) . "::IS_BODY_ALLOWED") && $body)
+			throw new \Atom\Protocol\Exception\FrameException("Body is Not allowed " . get_class($this->command));
+
+
 		$this->body = $body;
 		return $this;
+
 	}
 
 	/**
@@ -138,9 +169,34 @@ class Frame {
 	 */
 	public function isValid() {
 
+		if(is_null($this->command)) {
+			throw new \Exception("Command is not set");
+		}
+
+		if(!$this->command instanceof \Atom\Protocol\Command\CommandInterface) {
+			throw new \Exception("Command must be an instance of \Atom\Protocol\Command\CommandInterface");
+		}
+
+		// foreach($this->command->requiredFlags as $flag) {
+		// 	if(!in_array($flag, $this->flags)) throw new \Exception("Flag is Required by Command: ". get_class($this->command));
+		// }
+
+		// echo count($this->flags) . PHP_EOL; die();
+		if(count($this->command->requiredFlags) && !count($this->flags))
+			throw new \Exception("No flags set for " . get_class($this->command));
+		
+		foreach($this->flags as $flag) {
+			// echo get_class($flag) . PHP_EOL;
+		}
+
 		if(!constant(get_class($this->command) . "::IS_BODY_REQUIRED") && is_null($this->body)) 
 			throw new \Atom\Protocol\Exception\FrameException("Body is Required for " . get_class($this->command));
+
+		if(!constant(get_class($this->command) . "::IS_BODY_ALLOWED") && $this->body)
+			throw new \Atom\Protocol\Exception\FrameException("Body is Not allowed " . get_class($this->command));
+
 		return true;
+
 	}
 
 	/**
@@ -149,7 +205,14 @@ class Frame {
 	 * @return binary returns binary string representation
 	 */
 	private function getFixedHeader() {
-		return $this->command.$this->flags;
+
+		$msb = $this->command;
+		$lsb = 0b000;
+		foreach($this->flags as $flag) {
+			$lsb = $lsb | $flag->toBinary();
+		}
+		return sprintf("%'04b%'04b", $msb, $lsb);
+
 	}
 
 	/**
@@ -158,6 +221,7 @@ class Frame {
 	 * @return string return hexadecimal representation of the body length
 	 */
 	private function getVariableHeader() {
+		
 		$len = strlen($this->body);
 		$result = '';
 			while ($len > 0) {
@@ -171,6 +235,7 @@ class Frame {
 				}
 			}
 		return $result;
+
 	}
 
 	/**
@@ -179,7 +244,9 @@ class Frame {
 	 * @return string returns decimal as string representation 
 	 */
 	private function prepFrame() {
-		return bindec($this->getFixedHeader()).($this->getVariableHeader()).$this->body;
+
+		return ($this->getFixedHeader()).($this->getVariableHeader()).$this->body;
+
 	}
 
 	/**
@@ -188,6 +255,7 @@ class Frame {
 	 * @return string
 	 */
 	public function __toString() {
+		
 		try {
 			$this->isValid();
 		} catch (\Exception $e) {
@@ -195,5 +263,6 @@ class Frame {
 			return false;
 		}
 		return sprintf($this->prepFrame());
+
 	}
 }

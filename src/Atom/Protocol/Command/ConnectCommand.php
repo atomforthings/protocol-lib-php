@@ -2,6 +2,8 @@
 
 namespace Atom\Protocol\Command;
 
+use Atom\Protocol\Flag\AckFlag;
+
 /**
  * Atom Connect Command
  *
@@ -21,12 +23,12 @@ class ConnectCommand extends AbstractCommand  {
 	const IS_BODY_REQUIRED = false;
 	const IS_BODY_ALLOWED = true;
 
-	private $validFlags = [
-		\Atom\Protocol\Flag\AckFlag::VALUE
+	public $validFlags = [
+		'Atom\Protocol\Flag\AckFlag'
 	];
 
-	private $requiredFlags = [
-		\Atom\Protocol\Flag\AckFlag::VALUE
+	public $requiredFlags = [
+		'Atom\Protocol\Flag\AckFlag'
 	];
 
 	public function __construct() {

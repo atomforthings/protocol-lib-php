@@ -14,16 +14,39 @@ namespace Atom\Protocol\Flag;
  */
 abstract class AbstractFlag implements FlagInterface {
 
-	const VALUE = null;
+	protected $isEnbaled = true;
 
-	public function __construct() {}
+	public function __construct($enable = true) {
+		if(!isset(static::$value))
+            throw new \Exception(get_called_class() . ' must define a static $value');
+
+		$this->isEnbaled = $enable;
+	}
+
+	/**
+	 * enables a flag
+	 * @return $this
+	 */
+	public function enable() {
+		$this->isEnbaled = true;
+		return $this;
+	}
+
+	/**
+	 * disables a flag
+	 * @return $this
+	 */
+	public function disable() {
+		$this->isEnbaled = false;
+		return $this;
+	}
 
 	/**
 	 * returns binary string representation of implemented flag
 	 * @return string
 	 */
 	public function __toString() {
-		return sprintf("%'04b", $this::VALUE);
+		return sprintf("%'04b", $this::$value);
 	}
 	
 	/**
@@ -31,7 +54,7 @@ abstract class AbstractFlag implements FlagInterface {
 	 * @return number
 	 */
 	public function toDecimal() {
-		return sprintf("%02u", $this::VALUE);
+		return sprintf("%02u", $this::$value);
 	}
 
 	/**
@@ -39,7 +62,7 @@ abstract class AbstractFlag implements FlagInterface {
 	 * @return hex
 	 */
 	public function toHex() {
-		return sprintf("%02X", $this::VALUE);
+		return sprintf("%02X", $this::$value);
 	}
 
 	/**
@@ -47,7 +70,7 @@ abstract class AbstractFlag implements FlagInterface {
 	 * @return binary
 	 */
 	public function toBinary() {
-		return sprintf("%'04b", $this::VALUE);
+		return sprintf("%'04b", $this::$value);
 	}
 
 }

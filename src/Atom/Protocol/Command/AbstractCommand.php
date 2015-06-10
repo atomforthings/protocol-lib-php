@@ -2,6 +2,8 @@
 
 namespace Atom\Protocol\Command;
 
+use Atom\Protocol\Flag\FlagInterface;
+
 /**
  * Atom Command Abstract Class
  *
@@ -23,6 +25,15 @@ abstract class AbstractCommand implements CommandInterface {
 
 	public function __construct() {}
 
+	/**
+	 * Checks whether a flag is valid for this command or not
+	 * @param  FlagInterface $flag Flag to be tested
+	 * @return boolean
+	 */
+	public function isValidFlag(FlagInterface $flag) {
+		return in_array($flag, $this->validFlags);
+	}
+	
 	/**
 	 * returns binary string representation of implemented command
 	 * @return string
