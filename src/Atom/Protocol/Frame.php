@@ -148,14 +148,6 @@ class Frame {
 			throw \Atom\Protocol\Exception\FrameException('Command is not set');
 		}
 
-		if(!constant(get_class($this->command) . "::IS_BODY_REQUIRED") && is_null($body)) 
-			throw new \Atom\Protocol\Exception\FrameException("Body is Required for " . get_class($this->command));
-
-
-		if(!constant(get_class($this->command) . "::IS_BODY_ALLOWED") && $body)
-			throw new \Atom\Protocol\Exception\FrameException("Body is Not allowed " . get_class($this->command));
-
-
 		$this->body = $body;
 		return $this;
 
