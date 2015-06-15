@@ -51,7 +51,7 @@ abstract class AbstractFlag implements FlagInterface {
 	
 	/**
 	 * returns decimal representation of implemented flag
-	 * @return number
+	 * @return string decimal string representation
 	 */
 	public function toDecimal() {
 		return sprintf("%02u", $this::$value);
@@ -59,7 +59,7 @@ abstract class AbstractFlag implements FlagInterface {
 
 	/**
 	 * returns hexadecimal string representation of implemented flag
-	 * @return hex
+	 * @return string hex string representation
 	 */
 	public function toHex() {
 		return sprintf("%02X", $this::$value);
@@ -67,7 +67,7 @@ abstract class AbstractFlag implements FlagInterface {
 
 	/**
 	 * returns binary string representation of implemented flag
-	 * @return binary
+	 * @return string binary string representation
 	 */
 	public function toBinary() {
 		return sprintf("%'04b", $this::$value);

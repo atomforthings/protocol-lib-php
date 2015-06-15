@@ -22,19 +22,19 @@ interface CommandInterface {
 
 	/**
 	 * returns decimal representation of implemented command
-	 * @return number
+	 * @return string decimal string representation
 	 */
 	public function toDecimal();
 
 	/**
 	 * returns hexadecimal code representation of implemented command
-	 * @return hex
+	 * @return string hex string representation
 	 */
 	public function toHex();
 
 	/**
 	 * returns binary string representation of implemented command
-	 * @return string
+	 * @return string binary string representation
 	 */
 	public function toBinary();
 

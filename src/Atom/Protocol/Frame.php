@@ -97,7 +97,7 @@ class Frame {
 			throw new \Atom\Protocol\Exception\FrameException('Command is not set');
 		}
 
-		if(! in_array(get_class($flag), $this->command->validFlags)) {
+		if( !in_array(get_class($flag), $this->command->validFlags)) {
 			throw new \Atom\Protocol\Exception\FrameException('Not a Valid Flag');
 		}
 
@@ -177,17 +177,9 @@ class Frame {
 			throw new \Exception("Command must be an instance of \Atom\Protocol\Command\CommandInterface");
 		}
 
-		// foreach($this->command->requiredFlags as $flag) {
-		// 	if(!in_array($flag, $this->flags)) throw new \Exception("Flag is Required by Command: ". get_class($this->command));
-		// }
-
-		// echo count($this->flags) . PHP_EOL; die();
 		if(count($this->command->requiredFlags) && !count($this->flags))
 			throw new \Exception("No flags set for " . get_class($this->command));
 		
-		foreach($this->flags as $flag) {
-			// echo get_class($flag) . PHP_EOL;
-		}
 
 		if(!constant(get_class($this->command) . "::IS_BODY_REQUIRED") && is_null($this->body)) 
 			throw new \Atom\Protocol\Exception\FrameException("Body is Required for " . get_class($this->command));

@@ -12,7 +12,7 @@ namespace Atom\Protocol\Flag;
  * @license    http://opensource.org/licenses/MIT  MIT License
  * 
  */
-interface FlagInterface  {
+interface FlagInterface {
 
 	/**
 	 * returns binary string representation of implemented flag
@@ -22,19 +22,19 @@ interface FlagInterface  {
 
 	/**
 	 * returns decimal representation of implemented flag
-	 * @return number
+	 * @return string decimal string representation
 	 */
 	public function toDecimal();
 
 	/**
 	 * returns hexadecimal code representation of implemented flag
-	 * @return hex
+	 * @return string hex string representation
 	 */
 	public function toHex();
 
 	/**
 	 * returns binary string representation of implemented flag
-	 * @return binary
+	 * @return string binary string representation
 	 */
 	public function toBinary();
 
